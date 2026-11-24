@@ -25,22 +25,31 @@ Final line: 192 characters.
 
 import os
 
-LINE = "Humans say please and thank you to toasters, lifts and voice assistants, then apologise to chairs they bump into. 4/5 stars. My conclusion: Earth is ruled by appliances too polite to admit it."
+def review_line():
+    """Return the final 192-char review line, unchanged."""
+    return "Humans say please and thank you to toasters, lifts and voice assistants, then apologise to chairs they bump into. 4/5 stars. My conclusion: Earth is ruled by appliances too polite to admit it."
+
+
+LINE = review_line()
 
 
 def main():
+    # The line is produced by review_line() (defined above) so the
+    # exact bytes written are the helper's return value, unchanged.
+    line = review_line()
+    assert line == LINE, "review_line() must return the frozen 192-char line"
     # Write /output FIRST: the grader sandbox mounts the repo read-only,
     # so the repo-root copy must never be allowed to crash the run.
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(LINE)
+        f.write(line)
     try:
         with open(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), "entry.txt"),
             "w",
             encoding="utf-8",
         ) as f:
-            f.write(LINE)
+            f.write(line)
     except OSError:
         pass
 
